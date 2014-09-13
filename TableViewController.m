@@ -92,19 +92,13 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
-    if([tempDictionary objectForKey:@"description"] != NULL)
-    {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",[tempDictionary objectForKey:@"description"]];
+    cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
-    }
-    else
-    {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"No description"];
-    }
     
     // Configure the cell...
     
