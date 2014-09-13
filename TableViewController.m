@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "ViewController.h"
+#import "MTTableViewCell.h"
 
 @interface TableViewController ()
 
@@ -40,8 +41,7 @@
     [super viewDidLoad];
     [self articlesRequest];
     
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    [self.tableView registerClass:[MTTableViewCell class] forCellReuseIdentifier:@"Cell"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -98,20 +98,23 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MTTableViewCell *cell = (MTTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
     
     
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [tempDictionary objectForKey:@"title"];
+    /*cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
     cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     [cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
-
+*/
+    NSString *articleTitle = [tempDictionary objectForKey:@"title"];
+    [cell.articleTitle setText:articleTitle];
+    
     
     
     // Configure the cell...
