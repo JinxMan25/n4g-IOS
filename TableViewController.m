@@ -28,6 +28,13 @@
     return self;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    ViewController *detailViewController = (ViewController *)segue.destinationViewController;
+    detailViewController.articleDetail = [self.articlesArray objectAtIndex:indexPath.row];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
