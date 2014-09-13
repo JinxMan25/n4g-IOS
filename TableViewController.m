@@ -43,6 +43,10 @@
 
 -(void)articlesRequest{
     NSURL *url = [NSURL URLWithString:@"http://api.n4g.samiulhuq.com/articles/"];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //AFNetworking async request
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 }
 #pragma mark - Table view data source
 
