@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "AFNetworking.h"
 
 @interface TableViewController ()
 
@@ -40,6 +41,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)articlesRequest{
+    NSURL *url = [NSURL URLWithString:@"http://api.n4g.samiulhuq.com/articles/"];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
