@@ -99,6 +99,8 @@
     
     cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
+    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
+    
     
     // Configure the cell...
     
