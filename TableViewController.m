@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "ViewController.h"
 
@@ -93,6 +94,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
+    
+    
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     cell.textLabel.text = [tempDictionary objectForKey:@"title"];
@@ -100,6 +103,7 @@
     cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
+
     
     
     // Configure the cell...
