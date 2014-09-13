@@ -8,8 +8,11 @@
 
 #import "TableViewController.h"
 #import "AFNetworking.h"
+#import "ViewController.h"
 
 @interface TableViewController ()
+
+@property (strong, nonatomic) NSArray *articlesArray;
 
 @end
 
@@ -27,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self articlesRequest];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -45,16 +49,20 @@
 }
 
 -(void)articlesRequest{
-    NSURL *url = [NSURL URLWithString:@"http://api.n4g.samiulhuq.com/articles/"];
+    NSURL *url = [NSURL URLWithString:@"http://api.n4g.samiulhuq.com/articles"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking async request
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
-    operation.responseSerializer = [AFJSONRequestSerializer serializer];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
         
+        self.articlesArray = [responseObject objectForKey:@"articles"];
+        
         NSLog(@"The Array: %@", self.articlesArray);
+        
+        [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Request Failed: %@, %@", error, error.userInfo);
