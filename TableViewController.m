@@ -47,6 +47,17 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking async request
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFJSONRequestSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
+        
+        NSLog(@"The Array: %@", self.articlesArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+    }];
+    
+    [operation start];
 }
 #pragma mark - Table view data source
 
