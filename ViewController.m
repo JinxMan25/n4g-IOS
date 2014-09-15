@@ -13,7 +13,8 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *articleThumbnail;
-@property (weak, nonatomic) IBOutlet UIWebView *article;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
 @end
 
 @implementation ViewController
@@ -25,9 +26,18 @@
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
     self.articleTitle.lineBreakMode = UILineBreakModeWordWrap;
+    self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     [self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
+    //NSString *link = [[NSString alloc]initWithFormat:@"%@",[self.articleDetail objectForKey:@"link"]];
+    NSString *link = @"http://www.google.com";
+    NSURL *url = [NSURL URLWithString:link];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:requestObj];
+
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
