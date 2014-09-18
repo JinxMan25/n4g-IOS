@@ -115,7 +115,10 @@
     //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
     UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,89,89)];
-    
+    myImageView.tag = 1;
+    [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
+
+    [cell addSubview:myImageView];
 
     // Configure the cell...
     
