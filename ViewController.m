@@ -29,8 +29,8 @@
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     [self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
-    //NSString *link = [[NSString alloc]initWithFormat:@"%@",[self.articleDetail objectForKey:@"link"]];
-    NSString *link = @"http://www.google.com";
+    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"link"]];
+    //NSString *link = @"http://www.google.com";
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
