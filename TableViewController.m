@@ -106,7 +106,6 @@
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     
-    
     cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
     cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
@@ -114,9 +113,11 @@
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
     cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,3,85,85)];
+    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,85,85)];
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
+    
+    cell.textLabel.center = CGPointMake(85,0);
 
     [cell addSubview:myImageView];
 
