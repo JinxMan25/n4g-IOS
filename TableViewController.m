@@ -106,7 +106,13 @@
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     
-    cell.textLabel.text = [tempDictionary objectForKey:@"title"];
+    UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(86, 10, 220, 35)];
+    [cell.contentView addSubview:articleTitle];
+    articleTitle.text = [tempDictionary objectForKey:@"title"];
+    articleTitle.numberOfLines = 2;
+    [articleTitle setFont:[UIFont systemFontOfSize:12]];
+    articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
     cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
@@ -117,13 +123,13 @@
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     
-    cell.textLabel.center = CGPointMake(85,0);
 
     [cell addSubview:myImageView];
 
     // Configure the cell...
     
     return cell;
+        
 }
 
 
