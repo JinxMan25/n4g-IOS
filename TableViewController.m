@@ -105,6 +105,7 @@
     
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
+    //Add article title to each cell
     
     UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(73, 0, 220, 35)];
     [cell.contentView addSubview:articleTitle];
@@ -114,12 +115,17 @@
     articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
+    //Add article description to each cell
+    
     UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(74, 20, 220, 35)];
     articleDescription.text = [tempDictionary objectForKey:@"description"];
     articleDescription.numberOfLines = 3;
     [articleDescription setFont:[UIFont systemFontOfSize:6]];
+    articleDescription.textColor = [UIColor grayColor];
     [cell addSubview:articleDescription];
     //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
+    
+    //Add article thumbnail to each cell
     
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
@@ -128,6 +134,11 @@
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     
+    UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
+    numOfComments.text = [tempDictionary objectForKey:@"comments"];
+    [numOfComments setFont:[UIFont systemFontOfSize:6]];
+    numOfComments.textColor = [UIColor grayColor];
+    [cell addSubview:numOfComments];
 
     [cell addSubview:myImageView];
 
