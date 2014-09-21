@@ -115,24 +115,19 @@
     
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
-    
+        UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 80, 220, 35)];
+        comment_icon.tag = 52;
+        [cell.contentView addSubview:comment_icon];
+      
     //Add article description to each cell
     
     UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
             articleDescription.tag = 12;
     [cell addSubview:articleDescription];
     //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
+
     
-    //Add article thumbnail to each cell
     
-    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
-    //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
-        
-    
-    UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 58, 10, 10)];
-    UIImage *image = [UIImage imageNamed:@"message_icon"];
-    [comment_icon setImage:image];
-    [cell addSubview:comment_icon];
     
     /*NSString *comments = [tempDictionary objectForKey:@"comments"];
     UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
@@ -154,6 +149,11 @@
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     [cell.contentView addSubview:myImageView];
+    
+    //Add message_icon
+    UIImageView *comment_icon = (UIImageView*)[cell.contentView viewWithTag:52];
+    UIImage *image = [UIImage imageNamed:@"message_icon"];
+    [comment_icon setImage:image];
     
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
