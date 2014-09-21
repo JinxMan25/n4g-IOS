@@ -33,10 +33,13 @@
     //NSString *link = @"http://www.google.com";
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    self.webView.scrollView.delegate = self;
     [self.webView loadRequest:requestObj];
 
 }
-
+-(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView {
+    return nil;
+}
 
 
 - (void)didReceiveMemoryWarning
