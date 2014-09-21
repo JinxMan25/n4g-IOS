@@ -136,8 +136,10 @@
     }
     
     //set comments
-    //UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
-    //[numOfComments setText: [tempDictionary objectForKey:@"comments"]];
+    NSString *comments = [tempDictionary objectForKey:@"comments"];
+    UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
+    [numOfComments setText: comments];
+  
     
     //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
