@@ -11,5 +11,5 @@
 @interface MTTableViewCell : UITableViewCell
 @property(weak, nonatomic) IBOutlet UITextView *articleTitle;
 @property(weak, nonatomic) IBOutlet UIImageView *articleThumbnail;
-@property(weak, nonatomic) IBOutlet UITextView *articleDescription;
+@property(weak, nonatomic) IBOutlet UILabel *articleDescription;
 @end

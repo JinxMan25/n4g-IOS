@@ -114,7 +114,6 @@
 */
     NSString *articleTitle = [tempDictionary objectForKey:@"title"];
     [cell.articleTitle setText:articleTitle];
-    
     // Configure the cell...
     
     return cell;
