@@ -13,6 +13,7 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *articleThumbnail;
+@property (weak, nonatomic) IBOutlet UIWebView *article;
 @end
 
 @implementation ViewController
