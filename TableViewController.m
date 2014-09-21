@@ -128,17 +128,17 @@
     //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
 
     
-    
-    
-    /*NSString *comments = [tempDictionary objectForKey:@"comments"];
     UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
-    numOfComments.text = comments;
-    [numOfComments setFont:[UIFont systemFontOfSize: 7]];
-    numOfComments.textColor = [UIColor grayColor];
-    [cell addSubview:numOfComments];*/
+    numOfComments.tag = 9;
+    [cell addSubview:numOfComments];
 
     
     }
+    
+    //set comments
+    //UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
+    //[numOfComments setText: [tempDictionary objectForKey:@"comments"]];
+    
     //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
     [articleTitle setText: [tempDictionary objectForKey:@"title"]];
