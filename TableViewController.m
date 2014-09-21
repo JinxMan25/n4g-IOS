@@ -106,16 +106,20 @@
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     
-    UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(73, 10, 220, 35)];
+    UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(73, 0, 220, 35)];
     [cell.contentView addSubview:articleTitle];
     articleTitle.text = [tempDictionary objectForKey:@"title"];
     articleTitle.numberOfLines = 2;
-    [articleTitle setFont:[UIFont systemFontOfSize:9]];
+    [articleTitle setFont:[UIFont systemFontOfSize:8]];
     articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
-    
-    cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
+    UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(74, 20, 220, 35)];
+    articleDescription.text = [tempDictionary objectForKey:@"description"];
+    articleDescription.numberOfLines = 3;
+    [articleDescription setFont:[UIFont systemFontOfSize:6]];
+    [cell addSubview:articleDescription];
+    //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
