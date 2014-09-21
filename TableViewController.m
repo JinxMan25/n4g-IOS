@@ -118,7 +118,8 @@
         UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 80, 220, 35)];
         comment_icon.tag = 52;
         [cell.contentView addSubview:comment_icon];
-      
+        
+       
     //Add article description to each cell
     
     UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
@@ -154,6 +155,11 @@
     UIImageView *comment_icon = (UIImageView*)[cell.contentView viewWithTag:52];
     UIImage *image = [UIImage imageNamed:@"message_icon"];
     [comment_icon setImage:image];
+    
+    //set temp icon
+    UIImageView *temperatureIcon = (UIImageView*)[cell.contentView viewWithTag:53];
+    UIImage *icon = [UIImage imageNamed:@"low_temperature"];
+    [temperatureIcon setImage:icon];
     
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];

@@ -16,14 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6D-cI-TyI">
-                                <rect key="frame" x="0.0" y="62" width="95" height="95"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVo-BC-6KL">
-                                <rect key="frame" x="103" y="62" width="217" height="52"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="HVo-BC-6KL">
+                                <rect key="frame" x="10" y="42" width="300" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -32,12 +28,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <imageView userInteractionEnabled="NO" tag="53" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="low_temperature" translatesAutoresizingMaskIntoConstraints="NO" id="scj-k0-f42">
+                                <rect key="frame" x="-51" y="93" width="151" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.96210512907608692" green="0.96210512907608692" blue="0.96210512907608692" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="TDY-OC-j9y"/>
                     <connections>
-                        <outlet property="articleThumbnail" destination="u6D-cI-TyI" id="B0l-Hk-GAp"/>
+                        <outlet property="articleTemperature" destination="scj-k0-f42" id="boC-22-bCz"/>
                         <outlet property="articleTitle" destination="HVo-BC-6KL" id="76a-1h-0fm"/>
                         <outlet property="webView" destination="oFe-UX-z9h" id="bW0-Fd-CAM"/>
                     </connections>
@@ -131,6 +131,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="low_temperature" width="640" height="400"/>
         <image name="message_icon" width="640" height="400"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
