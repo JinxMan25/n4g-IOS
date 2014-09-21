@@ -158,10 +158,6 @@
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText:[tempDictionary objectForKey:@"description"]];
-    articleDescription.frame = CGRectMake(76, 20, 220, 35);
-    articleDescription.numberOfLines = 3;
-    [articleDescription setFont:[UIFont systemFontOfSize:6]];
-    articleDescription.textColor = [UIColor grayColor];
         // Configure the cell...
     
     return cell;
