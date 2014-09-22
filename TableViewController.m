@@ -111,7 +111,7 @@
         
     UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
         articleTitle.tag = 69;
-    [cell.contentView addSubview:articleTitle];
+    [cell addSubview:articleTitle];
     
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
@@ -119,10 +119,7 @@
     //Add article description to each cell
     
     UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
-    articleDescription.text = [tempDictionary objectForKey:@"description"];
-    articleDescription.numberOfLines = 3;
-    [articleDescription setFont:[UIFont systemFontOfSize:6]];
-    articleDescription.textColor = [UIColor grayColor];
+            articleDescription.tag = 12;
     [cell addSubview:articleDescription];
     //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
     
@@ -146,8 +143,11 @@
 
     
     }
+    //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
     [articleTitle setText: [tempDictionary objectForKey:@"title"]];
+    CGRect frame = CGRectMake(76, 20, 220, 35);
+    articleTitle.frame = frame;
     articleTitle.numberOfLines = 2;
     [articleTitle setFont:[UIFont systemFontOfSize:8]];
     articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -158,6 +158,14 @@
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     [cell.contentView addSubview:myImageView];
+    
+    //set description
+    UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
+    [articleDescription setText:[tempDictionary objectForKey:@"description"]];
+    articleDescription.frame = CGRectMake(76, 20, 220, 35);
+    articleDescription.numberOfLines = 3;
+    [articleDescription setFont:[UIFont systemFontOfSize:6]];
+    articleDescription.textColor = [UIColor grayColor];
         // Configure the cell...
     
     return cell;
