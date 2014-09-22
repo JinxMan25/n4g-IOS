@@ -24,7 +24,7 @@
         CGSize size = self.contentView.frame.size;
         
         // Initialize Main Label
-        self.articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(76, 35, 220, 35)];
+        self.articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(76, 0, 220, 35)];
         
         // Configure Main Label
         [self.articleTitle setFont:[UIFont boldSystemFontOfSize:8.0]];
