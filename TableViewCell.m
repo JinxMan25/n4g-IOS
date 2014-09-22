@@ -25,6 +25,8 @@
         
         // Initialize Main Label
         self.articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(76, 0, 220, 35)];
+        self.articleTitle.numberOfLines = 2;
+        self.articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
         
         // Configure Main Label
         [self.articleTitle setFont:[UIFont boldSystemFontOfSize:8.0]];
