@@ -7,6 +7,7 @@
 //
 
 #import "TableViewController.h"
+#import "TableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "ViewController.h"
@@ -97,76 +98,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    
-    
-    
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
+    static NSString *CellIdentifier = @"Cell";
+    TableViewCell *cell = (TableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    [cell.articleTitle setText:[tempDictionary objectForKey:@"title"]];
+    
+    
+    
     
     //Add article title to each cell
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-    UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
-        articleTitle.tag = 69;
-    [cell addSubview:articleTitle];
-    
-    //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
-    
-    
-    //Add article description to each cell
-    
-    UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
-            articleDescription.tag = 12;
-    [cell addSubview:articleDescription];
-    //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
-    
-    //Add article thumbnail to each cell
-    
-    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
-    //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
-        
-    
-    UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 58, 10, 10)];
-    UIImage *image = [UIImage imageNamed:@"message_icon"];
-    [comment_icon setImage:image];
-    [cell addSubview:comment_icon];
-    
-    /*NSString *comments = [tempDictionary objectForKey:@"comments"];
-    UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
-    numOfComments.text = comments;
-    [numOfComments setFont:[UIFont systemFontOfSize: 7]];
-    numOfComments.textColor = [UIColor grayColor];
-    [cell addSubview:numOfComments];*/
-
-    
-    }
-    //set title
-    UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
-    [articleTitle setText: [tempDictionary objectForKey:@"title"]];
-    CGRect frame = CGRectMake(76, 20, 220, 35);
-    articleTitle.frame = frame;
-    articleTitle.numberOfLines = 2;
-    [articleTitle setFont:[UIFont systemFontOfSize:8]];
-    articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
-    
-    //Set image
-    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
-    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,72,72)];
-    myImageView.tag = 1;
-    [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
-    [cell.contentView addSubview:myImageView];
-    
-    //set description
-    UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
-    [articleDescription setText:[tempDictionary objectForKey:@"description"]];
-    articleDescription.frame = CGRectMake(76, 20, 220, 35);
-    articleDescription.numberOfLines = 3;
-    [articleDescription setFont:[UIFont systemFontOfSize:6]];
-    articleDescription.textColor = [UIColor grayColor];
-        // Configure the cell...
     
     return cell;
         
