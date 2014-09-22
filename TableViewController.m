@@ -146,11 +146,7 @@
     //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
     [articleTitle setText: [tempDictionary objectForKey:@"title"]];
-    CGRect frame = CGRectMake(76, 20, 220, 35);
-    articleTitle.frame = frame;
-    articleTitle.numberOfLines = 2;
-    [articleTitle setFont:[UIFont systemFontOfSize:8]];
-    articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    
     
     //Set image
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
