@@ -139,16 +139,12 @@
     
     }
     
-    //set temperature
-    NSString *articleTemperature = [tempDictionary objectForKey:@"temperature"];
-    UILabel* temperature = (UILabel*)[cell.contentView viewWithTag:15];
-    [temperature setText:[tempDictionary objectForKey:@"temperature"]];
-    if ([articleTemperature intValue] < 100){
-        temperature.backgroundColor = [UIColor colorWithRed:40.0 green:40.0 blue:40.0 alpha:1.0];
-    } else {
-        temperature.backgroundColor = [UIColor colorWithRed:250.0 green:0.0 blue:0.0 alpha:1.0];
-
-    }
+    //set user and time posted
+    NSString *user = [tempDictionary objectForKey:@"user"];
+    NSString *time = [tempDictionary objectForKey:@"posted"];
+    NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
+    UILabel *posted = (UILabel*)[cell.contentView viewWithTag:16];
+    [posted setText: timePosted];
     
     //set comments
     NSString *comments = [tempDictionary objectForKey:@"comments"];
