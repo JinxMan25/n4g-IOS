@@ -11,5 +11,6 @@
 @interface TableViewCell : UITableViewCell
 
 @property (strong, nonatomic) UILabel *articleTitle;
+@property (strong, nonatomic) UILabel *articleDescription;
 
 @end
