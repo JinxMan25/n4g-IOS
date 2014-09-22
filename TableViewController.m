@@ -103,8 +103,8 @@
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     static NSString *CellIdentifier = @"Cell";
     TableViewCell *cell = (TableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    [cell.articleTitle setText:[tempDictionary objectForKey:@"title"]];
+    NSString *title = [tempDictionary objectForKey:@"title"];
+    cell.articleTitle.text = title;
     
     
     
