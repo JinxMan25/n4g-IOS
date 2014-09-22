@@ -115,6 +115,7 @@
     articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
+    
     //Add article description to each cell
     
     UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
@@ -134,11 +135,17 @@
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     
+    UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 58, 10, 10)];
+    UIImage *image = [UIImage imageNamed:@"message_icon"];
+    [comment_icon setImage:image];
+    [cell addSubview:comment_icon];
+    
+    /*NSString *comments = [tempDictionary objectForKey:@"comments"];
     UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
-    numOfComments.text = [tempDictionary objectForKey:@"comments"];
+    numOfComments.text = comments;
     [numOfComments setFont:[UIFont systemFontOfSize: 7]];
     numOfComments.textColor = [UIColor grayColor];
-    [cell addSubview:numOfComments];
+    [cell addSubview:numOfComments];*/
 
     [cell addSubview:myImageView];
 

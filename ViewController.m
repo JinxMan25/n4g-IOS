@@ -25,7 +25,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
-    self.articleTitle.lineBreakMode = UILineBreakModeWordWrap;
+    //self.articleTitle.lineBreakMode = UILineBreakModeWordWrap;
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     [self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
