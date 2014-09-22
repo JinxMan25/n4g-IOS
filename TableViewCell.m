@@ -24,13 +24,11 @@
         CGSize size = self.contentView.frame.size;
         
         // Initialize Main Label
-        self.articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(8.0, 8.0, size.width - 16.0, size.height - 16.0)];
+        self.articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(76, 35, 220, 35)];
         
         // Configure Main Label
-        [self.articleTitle setFont:[UIFont boldSystemFontOfSize:24.0]];
-        [self.articleTitle setTextAlignment:NSTextAlignmentCenter];
-        [self.articleTitle setTextColor:[UIColor orangeColor]];
-        [self.articleTitle setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+        [self.articleTitle setFont:[UIFont boldSystemFontOfSize:8.0]];
+        
         
         // Add Main Label to Content View
         [self.contentView addSubview:self.articleTitle];
