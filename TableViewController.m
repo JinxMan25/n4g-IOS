@@ -41,6 +41,8 @@
     [super viewDidLoad];
     [self articlesRequest];
     
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
