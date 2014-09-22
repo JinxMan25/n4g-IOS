@@ -131,9 +131,17 @@
     UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
     numOfComments.tag = 9;
     [cell addSubview:numOfComments];
+        
+        UILabel *temperature = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 8, 8)];
+        temperature.tag = 15;
+        [cell.contentView addSubview:temperature];
 
     
     }
+    
+    //set temperature
+    UILabel* temperature = (UILabel*)[cell.contentView viewWithTag:15];
+    [temperature setText:[tempDictionary objectForKey:@"temperature"]];
     
     //set comments
     NSString *comments = [tempDictionary objectForKey:@"comments"];
