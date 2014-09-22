@@ -31,9 +31,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    ViewController *detailViewController = (ViewController *)segue.destinationViewController;
-    detailViewController.articleDetail = [self.articlesArray objectAtIndex:indexPath.row];
+    if ([[segue identifier] isEqualToString:@"articleSegue"]){
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ViewController *detailViewController = (ViewController *)segue.destinationViewController;
+        detailViewController.articleDetail = [self.articlesArray objectAtIndex:indexPath.row];
+        
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -114,6 +118,9 @@
     
     return cell;
         
+}
+-(void)tableView:(UITableView*)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"articleSegue" sender:self];
 }
 
 
