@@ -62,7 +62,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="71"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" contentMode="top" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="12" id="ddU-nd-BRH">
+                                        <label autoresizesSubviews="NO" opaque="NO" multipleTouchEnabled="YES" tag="69" contentMode="top" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="12" id="ddU-nd-BRH">
                                             <rect key="frame" x="15" y="27" width="12" height="8"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.44999999999999962" height="0.19999999999999968"/>

@@ -106,13 +106,13 @@
     NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     //Add article title to each cell
-    
+    if (cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
     UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
+        articleTitle.tag = 69;
     [cell.contentView addSubview:articleTitle];
-    articleTitle.text = [tempDictionary objectForKey:@"title"];
-    articleTitle.numberOfLines = 2;
-    [articleTitle setFont:[UIFont systemFontOfSize:8]];
-    articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    
     //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
     
     
@@ -130,10 +130,7 @@
     
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     //[cell.imageView setImageWithURL:[NSURL URLWithString:image_url]];
-    cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,72,72)];
-    myImageView.tag = 1;
-    [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
+        
     
     UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 58, 10, 10)];
     UIImage *image = [UIImage imageNamed:@"message_icon"];
@@ -147,9 +144,21 @@
     numOfComments.textColor = [UIColor grayColor];
     [cell addSubview:numOfComments];*/
 
-    [cell addSubview:myImageView];
-
-    // Configure the cell...
+    
+    }
+    UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
+    [articleTitle setText: [tempDictionary objectForKey:@"title"]];
+    articleTitle.numberOfLines = 2;
+    [articleTitle setFont:[UIFont systemFontOfSize:8]];
+    articleTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    //Set image
+    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
+    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,72,72)];
+    myImageView.tag = 1;
+    [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
+    [cell.contentView addSubview:myImageView];
+        // Configure the cell...
     
     return cell;
         
