@@ -10,6 +10,6 @@
 
 @interface TableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *articleTitle;
+@property (strong, nonatomic) UILabel *articleTitle;
 
 @end

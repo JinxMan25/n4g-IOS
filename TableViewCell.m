@@ -7,6 +7,7 @@
 //
 
 #import "TableViewCell.h"
+#import "ViewController.h"
 
 @implementation TableViewCell
 

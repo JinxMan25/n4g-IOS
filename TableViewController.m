@@ -39,13 +39,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self articlesRequest];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+    static NSString *CellIdentifier = @"Cell";
+    
+    [self.tableView registerClass:[TableViewCell class] forCellReuseIdentifier:CellIdentifier];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+    [self articlesRequest];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -104,7 +105,7 @@
     static NSString *CellIdentifier = @"Cell";
     TableViewCell *cell = (TableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     NSString *title = [tempDictionary objectForKey:@"title"];
-    cell.articleTitle.text = title;
+    [cell.articleTitle setText: title];
     
     
     
