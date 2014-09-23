@@ -25,14 +25,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSNumber *temperature = [self.articleDetail objectForKey:@"temperature"];
-    if ([temperature intValue] < 100){
-        UIImageView *temperatureIcon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 11, 11, 11)];
-        temperatureIcon.tag = 53;
-        UIImage *temp = [UIImage imageNamed:@"low_temperature"];
-        [self.articleTemperature setImage:temp];
-    }
-    
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
     //self.articleTitle.lineBreakMode = UILineBreakModeWordWrap;
     self.webView.delegate = self;
