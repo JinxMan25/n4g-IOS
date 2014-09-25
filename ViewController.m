@@ -12,8 +12,12 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleTitle;
-@property (weak, nonatomic) IBOutlet UIImageView *articleTemperature;
-@property (strong, nonatomic) IBOutlet UIImageView *articleThumbnail;
+@property (weak, nonatomic) IBOutlet UILabel *articleTemperature;
+@property (weak, nonatomic) IBOutlet UILabel *user;
+@property (weak, nonatomic) IBOutlet UILabel *numOfComments;
+@property (weak, nonatomic) IBOutlet UILabel *posted;
+
+//@property (strong, nonatomic) IBOutlet UIImageView *articleThumbnail;
 
 
 @end
@@ -26,12 +30,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
-    //self.articleTitle.lineBreakMode = UILineBreakModeWordWrap;
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
-    [self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
+    //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
     NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"link"]];
-    //NSString *link = @"http://www.google.com";
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
