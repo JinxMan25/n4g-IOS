@@ -162,7 +162,7 @@
     
     //Set image
     NSString *image_url = [tempDictionary objectForKey:@"image_url"];
-    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,92,92)];
+    UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,12.5,72,72)];
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
     [cell.contentView addSubview:myImageView];
