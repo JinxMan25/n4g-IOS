@@ -13,7 +13,7 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *articleTemperature;
-@property (weak, nonatomic) IBOutlet UIImageView *articleThumbnail;
+@property (strong, nonatomic) IBOutlet UIImageView *articleThumbnail;
 
 
 @end
@@ -35,6 +35,7 @@
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
+    
     [self.webView loadRequest:requestObj];
 
 }
