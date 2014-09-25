@@ -30,6 +30,17 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
+    
+    self.articleTemperature.text = [self.articleDetail objectForKey:@"temperature"];
+    
+    self.numOfComments.text = [self.articleDetail objectForKey:@"comments"];
+    
+    NSString *user = [self.articleDetail objectForKey:@"user"];
+    NSString *time = [self.articleDetail objectForKey:@"posted"];
+    NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
+    
+    self.user.text = timePosted;
+    
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
