@@ -40,11 +40,17 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
     [self articlesRequest];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target: self action:nil];
+    UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
+    NSArray *actionButtonItems = @[settingsButton, cameraItem];
+    
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
