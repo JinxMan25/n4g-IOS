@@ -55,6 +55,14 @@ const int kLoadingCellTag = 123;
 {
     
     [super viewDidLoad];
+    // Initialize the refresh control.
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(articlesRequest)
+                  forControlEvents:UIControlEventValueChanged];
+    
     self.articlesArray = [NSMutableArray array];
     _currentPage = 1;
     [self articlesRequest];
@@ -92,6 +100,7 @@ const int kLoadingCellTag = 123;
 }
 
 -(void)articlesRequest{
+    
     NSString *urlString;
     NSURL *url;
     if (_currentPage >= 2){
@@ -111,6 +120,9 @@ const int kLoadingCellTag = 123;
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
         _totalPages = 20;
+        if ([self.refreshControl isRefreshing]){
+            [self.articlesArray removeAllObjects];
+        }
         
         for (id articleDictionary in [responseObject objectForKey:@"articles"]){
             Articles *article = [[Articles alloc] initWithDictionary:articleDictionary];
@@ -121,6 +133,7 @@ const int kLoadingCellTag = 123;
         NSLog(@"The Array: %@", self.articlesArray);
         
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Request Failed: %@, %@", error, error.userInfo);
@@ -128,6 +141,8 @@ const int kLoadingCellTag = 123;
     
     [operation start];
 }
+
+
 
 #pragma mark - Table view data source
 
@@ -247,7 +262,7 @@ const int kLoadingCellTag = 123;
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText: article.articleDescription];
     // Configure the cell...
-    
+
     [self.activity stopAnimating];
     
     return cell;
