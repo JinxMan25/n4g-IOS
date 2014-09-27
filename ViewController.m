@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *articleTemperature;
 @property (weak, nonatomic) IBOutlet UILabel *user;
 @property (weak, nonatomic) IBOutlet UILabel *numOfComments;
-@property (weak, nonatomic) IBOutlet UILabel *posted;
+
 
 //@property (strong, nonatomic) IBOutlet UIImageView *articleThumbnail;
 
@@ -44,7 +44,7 @@
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
-    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"link"]];
+    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"actual_link"]];
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
@@ -55,6 +55,16 @@
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView {
     return nil;
 }
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rdb-header').style.display = 'none'"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rdb-article-header').style.display = 'none'"];
+    [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('footer').style.display = 'none'"];
+}
+
+/*- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById(\"header\").style.display=\"none\";"];
+    
+}*/
 
 
 - (void)didReceiveMemoryWarning
