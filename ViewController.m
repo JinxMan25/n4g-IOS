@@ -42,9 +42,9 @@
     
     self.articleTitle.text = article.articleTitle;
     
-    //self.articleTemperature.text = article.temperature;
+    self.articleTemperature.text = article.temperature;
     
-    //self.numOfComments.text = [self.articleDetail objectForKey:@"comments"];
+    self.numOfComments.text = article.numOfComments;
     
     NSString *user = article.user;
     NSString *time = article.posted;
@@ -55,13 +55,13 @@
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
-    //NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"actual_link"]];
-    /*NSURL *url = [NSURL URLWithString:link];
+    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@", article.link];
+    NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
     [self.webView addSubview:self.activity];
     
-    [self.webView loadRequest:requestObj];*/
+    [self.webView loadRequest:requestObj];
 
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
