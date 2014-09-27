@@ -12,6 +12,8 @@
 #import "ViewController.h"
 #import "Articles.h"
 
+const int kLoadingCellTag = 123;
+
 @interface TableViewController ()
 
 @property (nonatomic, retain) NSMutableArray *articlesArray;
@@ -58,6 +60,7 @@
     [self articlesRequest];
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
+    
     actInd.color = [UIColor blackColor];
     [actInd setCenter:self.view.center];
     
@@ -89,7 +92,17 @@
 }
 
 -(void)articlesRequest{
-    NSURL *url = [NSURL URLWithString:@"http://api.n4g.samiulhuq.com/articles"];
+    NSString *urlString;
+    NSURL *url;
+    if (_currentPage >= 2){
+        urlString = [NSString stringWithFormat:@"http://api.n4g.samiulhuq.com/articles/page/%ld", (long)_currentPage];
+        url = [NSURL URLWithString:urlString];
+    
+    } else {
+        urlString = @"http://api.n4g.samiulhuq.com/articles";
+        url = [NSURL URLWithString:urlString];
+    }
+    
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     //AFNetworking async request
@@ -115,10 +128,12 @@
     
     [operation start];
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
@@ -126,6 +141,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
     if (_currentPage < _totalPages){
@@ -135,6 +151,7 @@
 }
 
 - (UITableViewCell *)articleCellForIndexPath:(NSIndexPath *)indexPath{
+    
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -229,8 +246,16 @@
     [cell addSubview:activityIndicator];
     
     [activityIndicator startAnimating];
+    cell.tag = kLoadingCellTag;
     return cell;
     
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (cell.tag == kLoadingCellTag){
+        _currentPage++;
+        [self articlesRequest];
+    }
 }
 
 
