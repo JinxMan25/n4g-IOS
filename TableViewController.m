@@ -54,6 +54,7 @@
     
     [super viewDidLoad];
     self.articlesArray = [NSMutableArray array];
+    _currentPage = 1;
     [self articlesRequest];
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
@@ -127,14 +128,15 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if (_currentPage < _totalPages){
+        return self.articlesArray.count + 1;
+    }
     return [self.articlesArray count];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)articleCellForIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
     Articles *article = [self.articlesArray objectAtIndex:indexPath.row];
@@ -145,34 +147,34 @@
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-    UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
+        UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
         articleTitle.tag = 69;
-    [cell addSubview:articleTitle];
-    
-    //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
-    
+        [cell addSubview:articleTitle];
+        
+        //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
+        
         UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 80, 220, 35)];
         comment_icon.tag = 52;
         [cell.contentView addSubview:comment_icon];
         
-       
-    //Add article description to each cell
-    
-    UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
-            articleDescription.tag = 12;
-    [cell addSubview:articleDescription];
-    //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
-
-    
-    UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
-    numOfComments.tag = 9;
-    [cell addSubview:numOfComments];
+        
+        //Add article description to each cell
+        
+        UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
+        articleDescription.tag = 12;
+        [cell addSubview:articleDescription];
+        //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
+        
+        
+        UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
+        numOfComments.tag = 9;
+        [cell addSubview:numOfComments];
         
         UILabel *temperature = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 8, 8)];
         temperature.tag = 15;
         [cell.contentView addSubview:temperature];
-
-    
+        
+        
     }
     
     //set user and time posted
@@ -181,9 +183,9 @@
     [posted setText: timePosted];
     
     //set comments
-     UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
-     [numOfComments setText: article.numOfComments];
-  
+    UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
+    [numOfComments setText: article.numOfComments];
+    
     
     //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
@@ -210,12 +212,35 @@
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText: article.articleDescription];
-        // Configure the cell...
+    // Configure the cell...
     
     [self.activity stopAnimating];
-
+    
     return cell;
-        
+
+}
+
+-(UITableViewCell *)loadingCell{
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                reuseIdentifier:nil];
+    
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.center = cell.center;
+    [cell addSubview:activityIndicator];
+    
+    [activityIndicator startAnimating];
+    return cell;
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < self.articlesArray.count){
+        return [self articleCellForIndexPath:indexPath];
+    } else {
+        return [self loadingCell];
+    }
 }
 
 
