@@ -176,16 +176,13 @@
     }
     
     //set user and time posted
-    //NSString *user = [tempDictionary objectForKey:@"user"];
-   // NSString *time = [tempDictionary objectForKey:@"posted"];
-    //NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
+    NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",article.posted, article.user];
     UILabel *posted = (UILabel*)[cell.contentView viewWithTag:16];
-    [posted setText: article.posted];
+    [posted setText: timePosted];
     
     //set comments
-   // NSString *comments = [tempDictionary objectForKey:@"comments"];
-    //UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
-   // [numOfComments setText: comments];
+     UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
+     [numOfComments setText: article.numOfComments];
   
     
     //set title
