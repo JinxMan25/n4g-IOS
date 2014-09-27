@@ -15,6 +15,9 @@
 @property (nonatomic, copy) NSString *user;
 @property (nonatomic, copy) NSString *posted;
 @property (nonatomic, copy) NSString *imageURL;
+@property (nonatomic, copy) NSString *numOfComments;
+@property (nonatomic, copy) NSString *temperature;
+@property (nonatomic, copy) NSString *link;
 
 - (id) initWithDictionary:(NSDictionary *)dictionary;
 

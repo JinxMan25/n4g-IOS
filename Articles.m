@@ -18,6 +18,9 @@
         self.user = [dictionary objectForKey:@"user"];
         self.posted = [dictionary objectForKey:@"posted"];
         self.imageURL = [dictionary objectForKey:@"image_url"];
+        self.numOfComments = [dictionary objectForKey:@"comments"];
+        self.temperature = [dictionary objectForKey:@"temperature"];
+        self.link = [dictionary objectForKey:@"link"];
     }
     return self;
 }
