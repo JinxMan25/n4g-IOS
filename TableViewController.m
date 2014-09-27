@@ -35,12 +35,29 @@
     detailViewController.articleDetail = [self.articlesArray objectAtIndex:indexPath.row];
 }
 
+-(void)viewWillAppear:(BOOL) animated {
+    [super viewWillAppear:animated];
+    [self.activity startAnimating];
+}
+
+
+/*-(void)viewDidAppear:(BOOL) animated {
+    [super viewDidAppear:animated];
+    [self.activity performSelector:@selector(stopAnimating) withObject:nil afterDelay:1];
+}*/
+
 
 - (void)viewDidLoad
 {
     
     [super viewDidLoad];
     [self articlesRequest];
+    UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    actInd.color = [UIColor blackColor];
+    [actInd setCenter:self.view.center];
+    
+    self.activity = actInd;
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -50,6 +67,7 @@
     
     NSArray *actionButtonItems = @[shareItem, cameraItem];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
+    [self.view addSubview:self.activity];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -189,6 +207,8 @@
     [articleDescription setText:[tempDictionary objectForKey:@"description"]];
         // Configure the cell...
     
+    [self.activity stopAnimating];
+
     return cell;
         
 }
