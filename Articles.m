@@ -10,4 +10,12 @@
 
 @implementation Articles
 
+- (id) initWithDictionary:(NSDictionary *)dictionary {
+    self = [super init];
+    if (self) {
+        self.articleTitle = [dictionary objectForKey:@"title"];
+    }
+    return self;
+}
+
 @end

@@ -16,4 +16,6 @@
 @property (nonatomic, copy) NSString *posted;
 @property (nonatomic, copy) NSURL *imageURL;
 
+- (id) initWithDictionary:(NSDictionary *)dictionary;
+
 @end
