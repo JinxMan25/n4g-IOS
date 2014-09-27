@@ -14,7 +14,7 @@
 
 @interface TableViewController ()
 
-@property (nonatomic, retain) NSArray *articlesArray;
+@property (nonatomic, retain) NSMutableArray *articlesArray;
 
 @end
 
@@ -53,6 +53,7 @@
 {
     
     [super viewDidLoad];
+    self.articlesArray = [NSMutableArray array];
     [self articlesRequest];
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
@@ -95,13 +96,12 @@
     
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
+        _totalPages = 20;
         
-        NSMutableArray *results = [NSMutableArray array];
         for (id articleDictionary in [responseObject objectForKey:@"articles"]){
             Articles *article = [[Articles alloc] initWithDictionary:articleDictionary];
-            [results addObject:article];
+            [self.articlesArray addObject:article];
         }
-        self.articlesArray = results;
         //self.articlesArray = [responseObject objectForKey:@"articles"];
         
         NSLog(@"The Array: %@", self.articlesArray);

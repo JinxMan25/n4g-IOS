@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TableViewController : UITableViewController
+@interface TableViewController : UITableViewController{
+    NSInteger _currentPage;
+    NSInteger _totalPages;
+}
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
+
 
 @end
