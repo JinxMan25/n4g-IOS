@@ -57,7 +57,7 @@ const int kLoadingCellTag = 123;
     [super viewDidLoad];
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.backgroundColor = [UIColor grayColor];
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
                             action:@selector(articlesRequest)
@@ -262,8 +262,6 @@ const int kLoadingCellTag = 123;
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText: article.articleDescription];
     // Configure the cell...
-
-    [self.activity stopAnimating];
     
     return cell;
 
