@@ -44,11 +44,10 @@ const int kLoadingCellTag = 123;
     [self.activity startAnimating];
 }
 
-
-/*-(void)viewDidAppear:(BOOL) animated {
+-(void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
-    [self.activity performSelector:@selector(stopAnimating) withObject:nil afterDelay:1];
-}*/
+    [self.activity performSelector:@selector(stopAnimating) withObject:nil];
+}
 
 
 - (void)viewDidLoad
@@ -266,6 +265,16 @@ const int kLoadingCellTag = 123;
     return cell;
 
 }
+
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 26) {
+        return 60;
+    } else {
+        return 92;
+    }
+
+}*/
 
 -(UITableViewCell *)loadingCell{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
