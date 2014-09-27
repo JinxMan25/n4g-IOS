@@ -30,7 +30,8 @@
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
     actInd.color = [UIColor blackColor];
-    [actInd setCenter:self.view.center];
+    actInd.frame = CGRectMake(150, 150, 30, 30);
+    
     
     self.activity = actInd;
     
