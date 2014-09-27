@@ -38,16 +38,16 @@
     
 	// Do any additional setup after loading the view, typically from a nib.
     
-    Article *article = self.articleDetail;
+    Articles *article = self.articleDetail;
     
-    self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
+    self.articleTitle.text = article.articleTitle;
     
-    self.articleTemperature.text = [self.articleDetail objectForKey:@"temperature"];
+    //self.articleTemperature.text = article.temperature;
     
-    self.numOfComments.text = [self.articleDetail objectForKey:@"comments"];
+    //self.numOfComments.text = [self.articleDetail objectForKey:@"comments"];
     
-    NSString *user = [self.articleDetail objectForKey:@"user"];
-    NSString *time = [self.articleDetail objectForKey:@"posted"];
+    NSString *user = article.user;
+    NSString *time = article.posted;
     NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
     
     self.user.text = timePosted;
@@ -55,13 +55,13 @@
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
-    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"actual_link"]];
-    NSURL *url = [NSURL URLWithString:link];
+    //NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@",[self.articleDetail objectForKey:@"actual_link"]];
+    /*NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
     [self.webView addSubview:self.activity];
     
-    [self.webView loadRequest:requestObj];
+    [self.webView loadRequest:requestObj];*/
 
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
