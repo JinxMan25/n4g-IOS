@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *articleDescription;
 @property (nonatomic, copy) NSString *user;
 @property (nonatomic, copy) NSString *posted;
-@property (nonatomic, copy) NSURL *imageURL;
+@property (nonatomic, copy) NSString *imageURL;
 
 - (id) initWithDictionary:(NSDictionary *)dictionary;
 

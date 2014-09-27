@@ -14,6 +14,10 @@
     self = [super init];
     if (self) {
         self.articleTitle = [dictionary objectForKey:@"title"];
+        self.articleDescription = [dictionary objectForKey:@"description"];
+        self.user = [dictionary objectForKey:@"user"];
+        self.posted = [dictionary objectForKey:@"posted"];
+        self.imageURL = [dictionary objectForKey:@"image_url"];
     }
     return self;
 }

@@ -10,10 +10,11 @@
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
 #import "ViewController.h"
+#import "Articles.h"
 
 @interface TableViewController ()
 
-@property (strong, nonatomic) NSArray *articlesArray;
+@property (nonatomic, retain) NSArray *articlesArray;
 
 @end
 
@@ -33,6 +34,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     ViewController *detailViewController = (ViewController *)segue.destinationViewController;
     detailViewController.articleDetail = [self.articlesArray objectAtIndex:indexPath.row];
+    NSLog(@"Detail view is : %@", detailViewController.articleDetail);
 }
 
 -(void)viewWillAppear:(BOOL) animated {
@@ -94,7 +96,13 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
         
-        self.articlesArray = [responseObject objectForKey:@"articles"];
+        NSMutableArray *results = [NSMutableArray array];
+        for (id articleDictionary in [responseObject objectForKey:@"articles"]){
+            Articles *article = [[Articles alloc] initWithDictionary:articleDictionary];
+            [results addObject:article];
+        }
+        self.articlesArray = results;
+        //self.articlesArray = [responseObject objectForKey:@"articles"];
         
         NSLog(@"The Array: %@", self.articlesArray);
         
@@ -129,9 +137,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     
+    Articles *article = [self.articlesArray objectAtIndex:indexPath.row];
     
-    
-    NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
+    //NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
     
     //Add article title to each cell
     if (cell == nil){
@@ -168,28 +176,28 @@
     }
     
     //set user and time posted
-    NSString *user = [tempDictionary objectForKey:@"user"];
-    NSString *time = [tempDictionary objectForKey:@"posted"];
-    NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
+    //NSString *user = [tempDictionary objectForKey:@"user"];
+   // NSString *time = [tempDictionary objectForKey:@"posted"];
+    //NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
     UILabel *posted = (UILabel*)[cell.contentView viewWithTag:16];
-    [posted setText: timePosted];
+    [posted setText: article.posted];
     
     //set comments
-    NSString *comments = [tempDictionary objectForKey:@"comments"];
-    UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
-    [numOfComments setText: comments];
+   // NSString *comments = [tempDictionary objectForKey:@"comments"];
+    //UILabel *numOfComments = (UILabel*)[cell.contentView viewWithTag:9];
+   // [numOfComments setText: comments];
   
     
     //set title
     UILabel *articleTitle = (UILabel*)[cell.contentView viewWithTag:69];
-    [articleTitle setText: [tempDictionary objectForKey:@"title"]];
+    [articleTitle setText: article.articleTitle];
     
     
     //Set image
-    NSString *image_url = [tempDictionary objectForKey:@"image_url"];
+    //NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,12.5,72,72)];
     myImageView.tag = 1;
-    [myImageView setImageWithURL:[NSURL URLWithString:image_url]];
+    [myImageView setImageWithURL:[NSURL URLWithString:article.imageURL]];
     [cell.contentView addSubview:myImageView];
     
     //Add message_icon
@@ -204,7 +212,7 @@
     
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
-    [articleDescription setText:[tempDictionary objectForKey:@"description"]];
+    [articleDescription setText: article.articleDescription];
         // Configure the cell...
     
     [self.activity stopAnimating];

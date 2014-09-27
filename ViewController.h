@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property(strong, nonatomic) NSDictionary *articleDetail;
+@property(strong, nonatomic) NSArray *articleDetail;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import "Articles.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *articleTitle;
@@ -31,11 +32,13 @@
     
     actInd.color = [UIColor blackColor];
     actInd.frame = CGRectMake(150, 150, 30, 30);
-    
-    
+
+
     self.activity = actInd;
     
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    Article *article = self.articleDetail;
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
     
