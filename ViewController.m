@@ -27,6 +27,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    
+    actInd.color = [UIColor blackColor];
+    [actInd setCenter:self.view.center];
+    
+    self.activity = actInd;
+    
 	// Do any additional setup after loading the view, typically from a nib.
     
     self.articleTitle.text = [self.articleDetail objectForKey:@"title"];
@@ -48,14 +55,22 @@
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
+    [self.webView addSubview:self.activity];
     
     [self.webView loadRequest:requestObj];
 
 }
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+    [self.activity startAnimating];
+}
+
+
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView {
     return nil;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.activity stopAnimating];
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rdb-header').style.display = 'none'"];
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('rdb-article-header').style.display = 'none'"];
     [self.webView stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('footer').style.display = 'none'"];

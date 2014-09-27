@@ -11,5 +11,6 @@
 @interface ViewController : UIViewController
 @property(strong, nonatomic) NSDictionary *articleDetail;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (nonatomic, strong) UIActivityIndicatorView *activity;
 
 @end
