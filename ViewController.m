@@ -55,7 +55,7 @@
     self.webView.delegate = self;
     self.articleTitle.numberOfLines = 0;
     //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
-    NSString *link = [[NSString alloc]initWithFormat:@"http://www.readability.com/m?url=%@", article.link];
+    NSString *link = [[NSString alloc]initWithFormat:@"http://api.n4g.samiulhuq.com/articles/get/HTTPreadability.com/m%@", article.link];
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
