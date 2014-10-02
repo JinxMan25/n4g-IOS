@@ -67,6 +67,11 @@ const int kLoadingCellTag = 123;
     [self articlesRequest];
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
+    //Initialize the refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor grayColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self action:@selector(refreshArticlesRequest)forControlEvents:UIControlEventValueChanged];
     
     actInd.color = [UIColor blackColor];
     [actInd setCenter:self.view.center];
@@ -126,7 +131,50 @@ const int kLoadingCellTag = 123;
         
         for (id articleDictionary in [responseObject objectForKey:@"articles"]){
             Articles *article = [[Articles alloc] initWithDictionary:articleDictionary];
+            
+                [self.articlesArray addObject:article];
+            
+        }
+        //self.articlesArray = [responseObject objectForKey:@"articles"];
+        
+        NSLog(@"The Array: %@", self.articlesArray);
+        
+        [self.tableView reloadData];
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
+        NSLog(@"Request Failed: %@, %@", error, error.userInfo);
+    }];
+    
+    [operation start];
+}
+
+-(void)refreshArticlesRequest{
+    NSString *urlString;
+    NSURL *url;
+    if (_currentPage >= 2){
+        urlString = [NSString stringWithFormat:@"http://api.n4g.samiulhuq.com/articles/page/%ld", (long)_currentPage];
+        url = [NSURL URLWithString:urlString];
+        
+    } else {
+        urlString = @"http://api.n4g.samiulhuq.com/articles";
+        url = [NSURL URLWithString:urlString];
+    }
+    
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //AFNetworking async request
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
+        _totalPages = 20;
+        [self.articlesArray removeAllObjects];
+        for (id articleDictionary in [responseObject objectForKey:@"articles"]){
+            Articles *article = [[Articles alloc] initWithDictionary:articleDictionary];
+            
             [self.articlesArray addObject:article];
+            
         }
         //self.articlesArray = [responseObject objectForKey:@"articles"];
         
@@ -134,6 +182,7 @@ const int kLoadingCellTag = 123;
         
         [self.tableView reloadData];
         [self.refreshControl endRefreshing];
+        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Request Failed: %@, %@", error, error.userInfo);
@@ -150,25 +199,7 @@ const int kLoadingCellTag = 123;
 {
     
 #warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    if (self.articlesArray){
         return 1;
-    } else {
-    
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        
-        messageLabel.text = @"No data is currently available. Please pull down to refresh.";
-        messageLabel.textColor = [UIColor blackColor];
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = NSTextAlignmentCenter;
-        messageLabel.font = [UIFont fontWithName:@"Palatino-Italic" size:20];
-        [messageLabel sizeToFit];
-        
-        self.tableView.backgroundView = messageLabel;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-    }
-    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
