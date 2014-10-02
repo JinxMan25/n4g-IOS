@@ -44,10 +44,10 @@ const int kLoadingCellTag = 123;
     [self.activity startAnimating];
 }
 
--(void)viewDidAppear:(BOOL) animated {
+/*-(void)viewDidAppear:(BOOL) animated {
     [super viewDidAppear:animated];
     [self.activity performSelector:@selector(stopAnimating) withObject:nil];
-}
+}*/
 
 
 - (void)viewDidLoad
@@ -84,6 +84,7 @@ const int kLoadingCellTag = 123;
     [self.view addSubview:self.activity];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -261,6 +262,7 @@ const int kLoadingCellTag = 123;
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText: article.articleDescription];
     // Configure the cell...
+    [self.activity stopAnimating];
     
     return cell;
 
