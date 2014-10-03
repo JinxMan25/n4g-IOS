@@ -31,6 +31,7 @@ const int kLoadingCellTag = 123;
     return self;
 }
 
+//Pass article properties to detail view
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
@@ -39,9 +40,12 @@ const int kLoadingCellTag = 123;
     NSLog(@"Detail view is : %@", detailViewController.articleDetail);
 }
 
+//Start animating indicator before table loads
 -(void)viewWillAppear:(BOOL) animated {
+    
     [super viewWillAppear:animated];
     [self.activity startAnimating];
+    
 }
 
 /*-(void)viewDidAppear:(BOOL) animated {
@@ -52,8 +56,8 @@ const int kLoadingCellTag = 123;
 
 - (void)viewDidLoad
 {
-    
     [super viewDidLoad];
+    
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor grayColor];
@@ -81,7 +85,9 @@ const int kLoadingCellTag = 123;
     UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
     
     NSArray *actionButtonItems = @[shareItem, cameraItem];
-    self.navigationItem.rightBarButtonItems = actionButtonItems;
+    //self.navigationItem.rightBarButtonItems = actionButtonItems;
+    
+    //Add UIActivity indicator to view
     [self.view addSubview:self.activity];
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -104,9 +110,13 @@ const int kLoadingCellTag = 123;
     
     NSString *urlString;
     NSURL *url;
+    
+    //If pull-to-refresh is used, set current page to 1
     if ([self.refreshControl isRefreshing]){
         _currentPage = 1;
     }
+    
+    
     if (_currentPage >= 2){
         urlString = [NSString stringWithFormat:@"http://api.n4g.samiulhuq.com/articles/page/%ld", (long)_currentPage];
         url = [NSURL URLWithString:urlString];
@@ -124,6 +134,8 @@ const int kLoadingCellTag = 123;
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
         _totalPages = 20;
+        
+        //Don't append to array if pull-to-refresh is being used
         if ([self.refreshControl isRefreshing]){
             [self.articlesArray removeAllObjects];
             
@@ -165,7 +177,7 @@ const int kLoadingCellTag = 123;
 {
     
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
+    //If total pages, then don't show activity indicator
     if (_currentPage < _totalPages){
         return self.articlesArray.count + 1;
     }
@@ -269,6 +281,7 @@ const int kLoadingCellTag = 123;
 
 }*/
 
+//Put Activity indicator at the end of table
 -(UITableViewCell *)loadingCell{
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                 reuseIdentifier:nil];
