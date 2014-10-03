@@ -59,6 +59,8 @@
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     self.webView.scrollView.delegate = self;
+    
+    
     [self.webView addSubview:self.activity];
     
     [self.webView loadRequest:requestObj];
