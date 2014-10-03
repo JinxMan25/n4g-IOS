@@ -105,7 +105,7 @@ const int kLoadingCellTag = 123;
     NSString *urlString;
     NSURL *url;
     if ([self.refreshControl isRefreshing]){
-        
+        _currentPage = 1;
     }
     if (_currentPage >= 2){
         urlString = [NSString stringWithFormat:@"http://api.n4g.samiulhuq.com/articles/page/%ld", (long)_currentPage];
