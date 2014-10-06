@@ -198,29 +198,27 @@ const int kLoadingCellTag = 123;
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
+        //set article title
         UILabel *articleTitle = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, 220, 35)];
         articleTitle.tag = 69;
         [cell addSubview:articleTitle];
         
-        //cell.textLabel.text = [tempDictionary objectForKey:@"title"];
-        
+        //set message vector
         UIImageView *comment_icon = [[UIImageView alloc] initWithFrame:CGRectMake(100, 80, 220, 35)];
         comment_icon.tag = 52;
         [cell.contentView addSubview:comment_icon];
         
-        
-        //Add article description to each cell
-        
+        //init article description
         UILabel *articleDescription = [[UILabel alloc] initWithFrame:CGRectMake(76, 20, 220, 35)];
         articleDescription.tag = 12;
         [cell addSubview:articleDescription];
-        //cell.detailTextLabel.text = [tempDictionary objectForKey:@"description"];
         
-        
+        //init article comments #
         UILabel *numOfComments = [[UILabel alloc] initWithFrame:CGRectMake(80, 58, 10, 10)];
         numOfComments.tag = 9;
         [cell addSubview:numOfComments];
         
+        //init article temperature
         UILabel *temperature = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 8, 8)];
         temperature.tag = 15;
         [cell.contentView addSubview:temperature];
