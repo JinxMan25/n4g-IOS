@@ -191,8 +191,7 @@ const int kLoadingCellTag = 123;
     
     
     Articles *article = [self.articlesArray objectAtIndex:indexPath.row];
-    
-    //NSDictionary *tempDictionary = [self.articlesArray objectAtIndex:indexPath.row];
+
     
     //Add article title to each cell
     if (cell == nil){
@@ -242,7 +241,6 @@ const int kLoadingCellTag = 123;
     
     
     //Set image
-    //NSString *image_url = [tempDictionary objectForKey:@"image_url"];
     UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,12.5,72,72)];
     myImageView.tag = 1;
     [myImageView setImageWithURL:[NSURL URLWithString:article.imageURL]];
@@ -261,7 +259,6 @@ const int kLoadingCellTag = 123;
     //set description
     UILabel *articleDescription = (UILabel*)[cell.contentView viewWithTag:12];
     [articleDescription setText: article.articleDescription];
-    // Configure the cell...
    
     [self.activity stopAnimating];
     

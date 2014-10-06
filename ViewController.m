@@ -28,42 +28,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     
+    //Alloc activity indicator
+    
+    UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     actInd.color = [UIColor blackColor];
     actInd.frame = CGRectMake(150, 150, 30, 30);
-
-
     self.activity = actInd;
     
-	// Do any additional setup after loading the view, typically from a nib.
+    //Create instance of Article object
     
     Articles *article = self.articleDetail;
     
+    //Set article properties
+    
     self.articleTitle.text = article.articleTitle;
-    
     self.articleTemperature.text = article.temperature;
-    
     self.numOfComments.text = article.numOfComments;
-    
+
     NSString *user = article.user;
     NSString *time = article.posted;
     NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
-    
     self.user.text = timePosted;
     
+    //Set delegate to self to allow delegate methods
+    
     self.webView.delegate = self;
+    self.webView.scrollView.delegate = self;
+    
     self.articleTitle.numberOfLines = 0;
-    //[self.articleThumbnail setImageWithURL:[NSURL URLWithString:[self.articleDetail objectForKey:@"image_url"]]];
+    
+    //Prepare to send Async request to api
+    
     NSString *link = [[NSString alloc]initWithFormat:@"http://api.n4g.samiulhuq.com/articles/get/HTTPreadability.com/m%@", article.link];
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    self.webView.scrollView.delegate = self;
     [self.webView addSubview:self.activity];
-    
     [self.webView loadRequest:requestObj];
 
 }
+
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     
     [self.activity startAnimating];
