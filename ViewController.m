@@ -63,6 +63,9 @@
     NSString *link = [[NSString alloc]initWithFormat:@"http://api.n4g.samiulhuq.com/articles/get/HTTPreadability.com/m%@", article.link];
     NSURL *url = [NSURL URLWithString:link];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+
+    self.webView.scrollView.delegate = self;
+    
     [self.webView addSubview:self.activity];
     [self.webView loadRequest:requestObj];
 
