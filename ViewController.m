@@ -31,11 +31,7 @@
     [super viewDidLoad];
     
     //AMScrollingNavBar
-    
-
-    [self.navigationController.navigationBar setTranslucent:YES];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.500]];
-    [self followScrollView: self.webView withDelay:60];
+    [self followScrollView: self.webView];
     
     //Alloc activity indicator
     
@@ -54,7 +50,7 @@
     self.articleTemperature.text = article.temperature;
     self.numOfComments.text = article.numOfComments;
     
-    [self setTitle:article.articleTitle];\896*-98652210
+    [self setTitle:article.articleTitle];
     NSString *user = article.user;
     NSString *time = article.posted;
     NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
