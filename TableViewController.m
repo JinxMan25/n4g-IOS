@@ -63,7 +63,7 @@ const int kLoadingCellTag = 123;
     //AMScrollingNavBar
     [self setTitle:@"N4G"];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.039 green:0.445 blue:0.700 alpha:1.000]];
-    //[self followScrollView: self.view];
+    [self followScrollView: self.view];
     
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -111,6 +111,11 @@ const int kLoadingCellTag = 123;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self showNavBarAnimated:NO];
 }
 
 -(void)articlesRequest{
