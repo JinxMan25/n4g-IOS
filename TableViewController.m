@@ -8,6 +8,7 @@
 
 #import "TableViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import <UIViewController+ScrollingNavbar.h>
 #import "AFNetworking.h"
 #import "ViewController.h"
 #import "Articles.h"
@@ -57,6 +58,12 @@ const int kLoadingCellTag = 123;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    //AMScrollingNavBar
+    [self setTitle:@"N4G"];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.039 green:0.445 blue:0.700 alpha:1.000]];
+    //[self followScrollView: self.view];
     
     // Initialize the refresh control.
     self.refreshControl = [[UIRefreshControl alloc] init];

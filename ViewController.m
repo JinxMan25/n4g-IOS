@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AFNetworking.h"
 #import "UIImageView+AFNetworking.h"
+#import <UIViewController+ScrollingNavbar.h>
 #import "Articles.h"
 
 @interface ViewController ()
@@ -29,6 +30,13 @@
 {
     [super viewDidLoad];
     
+    //AMScrollingNavBar
+    
+
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.500]];
+    [self followScrollView: self.webView withDelay:60];
+    
     //Alloc activity indicator
     
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -45,7 +53,8 @@
     self.articleTitle.text = article.articleTitle;
     self.articleTemperature.text = article.temperature;
     self.numOfComments.text = article.numOfComments;
-
+    
+    [self setTitle:article.articleTitle];\896*-98652210
     NSString *user = article.user;
     NSString *time = article.posted;
     NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];
