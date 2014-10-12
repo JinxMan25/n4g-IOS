@@ -302,7 +302,7 @@ const int kLoadingCellTag = 123;
                                                 reuseIdentifier:nil];
     
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    activityIndicator.center = cell.center;
+    activityIndicator.center = CGPointMake(cell.center.x, 46);
     [cell addSubview:activityIndicator];
     
     [activityIndicator startAnimating];

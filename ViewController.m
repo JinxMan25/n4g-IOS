@@ -37,7 +37,8 @@
     
     UIActivityIndicatorView *actInd =  [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     actInd.color = [UIColor blackColor];
-    actInd.frame = CGRectMake(150, 150, 30, 30);
+    //actInd.frame = CGRectMake(150, 200, 30, 30);
+    actInd.center = CGPointMake(self.webView.center.x, self.webView.center.y-30);
     self.activity = actInd;
     
     //Create instance of Article object
