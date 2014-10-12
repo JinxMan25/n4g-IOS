@@ -50,7 +50,9 @@
     self.articleTemperature.text = article.temperature;
     self.numOfComments.text = article.numOfComments;
     
-    [self setTitle:article.articleTitle];
+    //set nav bar title
+    [self setTitle:@"Back"];
+    
     NSString *user = article.user;
     NSString *time = article.posted;
     NSString *timePosted = [[NSString alloc] initWithFormat :@"%@ %@",time,user];

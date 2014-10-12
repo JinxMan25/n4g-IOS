@@ -62,6 +62,12 @@ const int kLoadingCellTag = 123;
     
     //AMScrollingNavBar
     [self setTitle:@"N4G"];
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0,0.0,20,40)];
+    UIImage *iconImage = [UIImage imageNamed:@"stretched_logo"];
+    [icon setImage:iconImage];
+    self.navigationItem.titleView = icon;
+    
+    
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.039 green:0.445 blue:0.700 alpha:1.000]];
     [self followScrollView: self.view];
     
