@@ -62,7 +62,7 @@ const int kLoadingCellTag = 123;
     
     //AMScrollingNavBar
     [self setTitle:@"N4G"];
-    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0,0.0,20,40)];
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0,0.0,20,35)];
     UIImage *iconImage = [UIImage imageNamed:@"stretched_logo"];
     [icon setImage:iconImage];
     self.navigationItem.titleView = icon;

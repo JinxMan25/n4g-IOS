@@ -51,7 +51,6 @@
     self.numOfComments.text = article.numOfComments;
     
     //set nav bar title
-    [self setTitle:@"Back"];
     
     NSString *user = article.user;
     NSString *time = article.posted;
