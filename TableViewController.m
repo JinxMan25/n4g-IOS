@@ -97,8 +97,10 @@ const int kLoadingCellTag = 123;
     UIBarButtonItem *shareItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
     UIBarButtonItem *cameraItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:self action:nil];
     
-    NSArray *actionButtonItems = @[shareItem, cameraItem];
-    //self.navigationItem.rightBarButtonItems = actionButtonItems;
+    UIImageView *hamburgerIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0,0.0,28,18)];
+    UIBarButtonItem *hamburgerButton = [[UIBarButtonItem alloc] initWithCustomView:[hamburgerIcon initWithImage:[UIImage imageNamed:@"hamburger"]]];
+    NSArray *actionButtonItems = @[hamburgerButton];
+    self.navigationItem.leftBarButtonItems = actionButtonItems;
     
     //Add UIActivity indicator to view
     [self.view addSubview:self.activity];
