@@ -83,6 +83,10 @@
     [self.activity startAnimating];
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self showNavBarAnimated:NO];
+}
 
 -(UIView*)viewForZoomingInScrollView:(UIScrollView*)scrollView {
     return nil;

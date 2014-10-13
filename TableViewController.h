@@ -13,6 +13,7 @@
     NSInteger _totalPages;
 }
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *hamburger;
 
 
 @end

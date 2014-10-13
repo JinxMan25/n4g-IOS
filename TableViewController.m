@@ -11,6 +11,7 @@
 #import <UIViewController+ScrollingNavbar.h>
 #import "AFNetworking.h"
 #import "ViewController.h"
+#import "SWRevealViewController.h"
 #import "Articles.h"
 
 const int kLoadingCellTag = 123;
@@ -59,6 +60,9 @@ const int kLoadingCellTag = 123;
 {
     [super viewDidLoad];
     
+    //Set the sidebar button action. When it's tapped, it'll show up the sidebar
+    
+    
     
     //AMScrollingNavBar
     [self setTitle:@"N4G"];
@@ -99,8 +103,12 @@ const int kLoadingCellTag = 123;
     
     UIImageView *hamburgerIcon = [[UIImageView alloc] initWithFrame:CGRectMake(0.0,0.0,28,18)];
     UIBarButtonItem *hamburgerButton = [[UIBarButtonItem alloc] initWithCustomView:[hamburgerIcon initWithImage:[UIImage imageNamed:@"hamburger"]]];
-    NSArray *actionButtonItems = @[hamburgerButton];
-    self.navigationItem.leftBarButtonItems = actionButtonItems;
+    //NSArray *actionButtonItems = @[hamburgerButton];
+    self.navigationItem.leftBarButtonItem = hamburgerButton;
+    self.navigationItem.leftBarButtonItem.target = self.revealViewController;
+    self.navigationItem.leftBarButtonItem.action = @selector(revealToggle:);
+    
+    
     
     //Add UIActivity indicator to view
     [self.view addSubview:self.activity];
