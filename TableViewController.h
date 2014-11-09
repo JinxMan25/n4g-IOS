@@ -14,6 +14,7 @@
 }
 @property (nonatomic, strong) UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *hamburger;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *button;
 
 
 @end

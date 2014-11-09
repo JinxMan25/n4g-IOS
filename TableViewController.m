@@ -105,8 +105,13 @@ const int kLoadingCellTag = 123;
     UIBarButtonItem *hamburgerButton = [[UIBarButtonItem alloc] initWithCustomView:[hamburgerIcon initWithImage:[UIImage imageNamed:@"hamburger"]]];
     //NSArray *actionButtonItems = @[hamburgerButton];
     self.navigationItem.leftBarButtonItem = hamburgerButton;
-    self.navigationItem.leftBarButtonItem.target = self.revealViewController;
+    //self.navigationItem.leftBarButtonItem.target = self.revealViewController;
     self.navigationItem.leftBarButtonItem.action = @selector(revealToggle:);
+    _button.target = self.revealViewController;
+    _button.action = @selector(revealToggle:);
+    
+    //[self.tableView addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     
     
     
